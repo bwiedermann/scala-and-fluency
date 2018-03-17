@@ -16,5 +16,7 @@ object Practice {
     * Returns true if we sleep in. We sleep in if it's not a weekday or
     * we're on vacation.
     */
-  def sleepIn(weekday: Boolean, vacation: Boolean): Boolean = false
+  def sleepIn(weekday: Boolean, vacation: Boolean): Boolean = {
+    !weekday || vacation
+  }
 }
