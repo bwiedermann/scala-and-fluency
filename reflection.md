@@ -53,7 +53,7 @@ def save(image: BufferedImage,
 }
 ```
 
-### `BufferedImage` is weird
+### `BufferedImage` is a weird name
 This issue is a bit more subtle. 
 
 The result type for each of the operations is `BufferedImage`, which is a type
@@ -70,19 +70,23 @@ would have to declare the parameter and result types of the function to be
 ```scala
 package pioneer.pictures
 
+import java.awt.image.BufferedImage
 import pioneer.resource
 
-/** flip a picture horizontally, grayscale it, and rotate it left */
-def myOperation(image: BufferedImage): BufferedImage = {
-  Picture.rotateLeft(Picture.grayScale(Picture.flipHorizontal(image)))
-}
-
 object PictureProgram extends App {
+  /** flip a picture horizontally, grayscale it, and rotate it left */
+  def myOperation(image: BufferedImage): BufferedImage = {
+    Picture.rotateLeft(Picture.grayScale(Picture.flipHorizontal(image)))
+  }
+
   val image = Picture.loadImage(resource("/image.png"))
   val result = myOperation(image)
   Picture.saveImage(result, "output.png")
 }
-
 ```
-In this scenario, it would be nice if the user could use a name other than
-`BufferedImage`. Maybe just `Image`?
+Notice that the user has to import the `BufferedImage` type themselves, to be
+able to use that type in the `myOperation` function. In this scenario,
+it would be nice if:
+   1. The user didn't have to import `BufferedImage`.
+   1. The user could work with a type that has a better name. Maybe just
+      `Image`?
