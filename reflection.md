@@ -102,8 +102,8 @@ it would be nice if:
 ## Better fluency
 Our new design has better fluency, in the sense that we can compose multiple
 operations without saving intermediate files. But some users might not like the
-form of composition we implemented. For example, when composing operations, it's
-the inner-most operation that's applied first. If we're reading the operations
-from left, we're reading them in the opposite order in which they're applied. It
-might be nice to have the reading order match the order in which the operations
-are applied.
+nested form of composition we implemented. For example, when composing
+operations, it's the inner-most operation that's applied first. If we're reading
+the operations from left, we're reading them in the opposite order in which
+they're applied. It might be nice to have the reading order match the order in
+which the operations are applied.
