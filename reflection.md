@@ -52,3 +52,37 @@ def save(image: BufferedImage,
   ...
 }
 ```
+
+### `BufferedImage` is weird
+This issue is a bit more subtle. 
+
+The result type for each of the operations is `BufferedImage`, which is a type
+defined in another library. The user of _our_ library doesn't need to know that
+the image is buffered (whatever that means), so it would be nicer if the result
+type had a better name than `BufferedImage`. 
+
+This issue didn't cause a problem for us in the simple program we wrote. But
+what if the user wanted to write their own function that performed several
+operations. For example, what if the user wanted to take the three operations
+from our sample program and turn them into their own function? Then, the user
+would have to declare the parameter and result types of the function to be
+`BufferedImage`:
+```scala
+package pioneer.pictures
+
+import pioneer.resource
+
+/** flip a picture horizontally, grayscale it, and rotate it left */
+def myOperation(image: BufferedImage): BufferedImage = {
+  Picture.rotateLeft(Picture.grayScale(Picture.flipHorizontal(image)))
+}
+
+object PictureProgram extends App {
+  val image = Picture.loadImage(resource("/image.png"))
+  val result = myOperation(image)
+  Picture.saveImage(result, "output.png")
+}
+
+```
+In this scenario, it would be nice if the user could use a name other than
+`BufferedImage`. Maybe just `Image`?
