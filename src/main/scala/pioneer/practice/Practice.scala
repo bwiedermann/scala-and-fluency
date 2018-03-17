@@ -8,7 +8,7 @@ object Practice {
     * given a string `s`, returns a new string with
     * two copies of `s`, back-to-back
     */
-  def repeat(s: String): String = ""
+  def repeat(s: String): String = s + s
 
   /**
     * from http://codingbat.com/prob/p187868
