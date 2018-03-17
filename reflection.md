@@ -7,11 +7,13 @@ Is there anything that is still annoying or difficult about the operations we
 have in the library (i.e., flipping, rotating, and grayscaling)?
 
 ## Better names
-There are a few things that would be easy to fix, relating to names.
+There are a few things relating to names that would make the user's experience
+better.
 
 ### Stop referencing the `Picture` object so much
 
-It's annoying to always write `Picture.` before each operation. We could fix it in our program by importing all the functions from the `Picture` object:
+It's annoying to always write `Picture.` before each operation. We could fix it
+in our program by importing all the functions from the `Picture` object:
   ```scala 
   import Picture._
   ```
@@ -19,7 +21,10 @@ That's a little bit of extra typing on the user's part, but the user saves every
   
 ### Inconsistent names in the `Picture` object
 
-The `loadImage` and `saveImage` functions are inconsistently named. The names of all the other operations in the library contain only the verb (e.g., `flipHorizontal`) and not the noun `Image`. There are a couple of ways to change it.
+The `loadImage` and `saveImage` functions are inconsistently named. The names of
+all the other operations in the library contain only the verb (e.g.,
+`flipHorizontal`) and not the noun `Image`. There are a couple of ways to change
+it.
 
 #### Let the user handle it
 
@@ -30,7 +35,8 @@ import Picture.{loadImage => load}
 But it's really the _implementor's_ responsibility to provide good names, so...
 
 #### Change the `Picture` object       
-A better way to address this issue is to rename the functions in the `Picture` object, so they're consistent:
+A better way to address this issue is to rename the functions in the `Picture`
+object, so they're consistent:
 ```scala
 def load(filename: String): BufferedImage = {
   ...
